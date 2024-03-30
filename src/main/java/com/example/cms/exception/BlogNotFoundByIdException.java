@@ -6,8 +6,8 @@ import lombok.Getter;
 @SuppressWarnings("serial")
 @Getter
 @AllArgsConstructor
-public class UserAlreadyExistByEmailException extends RuntimeException {
-
+public class BlogNotFoundByIdException extends RuntimeException {
+	
 	private String message;
 
 }

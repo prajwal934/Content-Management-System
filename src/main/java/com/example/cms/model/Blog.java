@@ -1,13 +1,9 @@
 package com.example.cms.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -22,26 +18,21 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "users")
-public class User {
+@Table(name = "blogs")
+public class Blog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
-	private String userName;
-	private String email;
-	private String password;
-	private boolean deleted;
-	@ManyToMany
-	private List<Blog> blogs;
+	private int blogId;
+	private String title;
+	private String[] topics;
+	private String about;
 	
-	@CreatedDate
-	@Column(updatable = false)
-	private LocalDateTime createdAt;
-	@LastModifiedDate
-	private LocalDateTime lastModifiedAt;
+//	u-ni directional
+	@ManyToMany(mappedBy = "blogs")
+	private List<User> users;
 
 }
